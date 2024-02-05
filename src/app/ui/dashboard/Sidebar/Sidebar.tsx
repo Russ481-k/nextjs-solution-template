@@ -1,71 +1,69 @@
-'use client'
+"use client";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
-import React, { useContext, useEffect, useState } from 'react'
-import classNames from 'classnames'
-import { Button } from 'react-bootstrap'
-import { SidebarContext } from '@/app/ui/dashboard/sidebar-provider'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import React, { useContext, useEffect, useState } from "react";
+import classNames from "classnames";
+import { Button } from "react-bootstrap";
+import { SidebarContext } from "@/app/ui/dashboard/sidebar-provider";
+import Image from "next/image";
 
 export default function Sidebar({ children }: { children: React.ReactNode }) {
-  const [isNarrow, setIsNarrow] = useState(false)
+  const [isNarrow, setIsNarrow] = useState(false);
 
   const {
     showSidebarState: [isShowSidebar],
     showSidebarMdState: [isShowSidebarMd, setIsShowSidebarMd],
-  } = useContext(SidebarContext)
+  } = useContext(SidebarContext);
 
   const toggleIsNarrow = () => {
-    const newValue = !isNarrow
-    localStorage.setItem('isNarrow', newValue ? 'true' : 'false')
-    setIsNarrow(newValue)
-  }
+    const newValue = !isNarrow;
+    localStorage.setItem("isNarrow", newValue ? "true" : "false");
+    setIsNarrow(newValue);
+  };
 
   // On first time load only
   useEffect(() => {
-    if (localStorage.getItem('isNarrow')) {
-      setIsNarrow(localStorage.getItem('isNarrow') === 'true')
+    if (localStorage.getItem("isNarrow")) {
+      setIsNarrow(localStorage.getItem("isNarrow") === "true");
     }
-  }, [setIsNarrow])
+  }, [setIsNarrow]);
 
   // On first time load only
   useEffect(() => {
-    if (localStorage.getItem('isShowSidebarMd')) {
-      setIsShowSidebarMd(localStorage.getItem('isShowSidebarMd') === 'true')
+    if (localStorage.getItem("isShowSidebarMd")) {
+      setIsShowSidebarMd(localStorage.getItem("isShowSidebarMd") === "true");
     }
-  }, [setIsShowSidebarMd])
+  }, [setIsShowSidebarMd]);
 
   return (
     <div
-      className={classNames('sidebar d-flex flex-column position-fixed h-100', {
-        'sidebar-narrow': isNarrow,
+      className={classNames("sidebar d-flex flex-column position-fixed h-100", {
+        "sidebar-narrow": isNarrow,
         show: isShowSidebar,
-        'md-hide': !isShowSidebarMd,
+        "md-hide": !isShowSidebarMd,
       })}
       id="sidebar"
     >
-      <div className="sidebar-brand d-none d-md-flex align-items-center justify-content-center">
-        <svg
+      <div className="sidebar-brand d-none d-md-flex align-items-center justify-content-left">
+        <Image
           className="sidebar-brand-full"
-          width="118"
-          height="46"
-        >
-          <title>CoreUI Logo</title>
-          <use xlinkHref="/assets/brand/coreui.svg#full" />
-        </svg>
-        <svg
+          src="/assets/brand/topLogo.png#full"
+          alt="logo"
+          priority
+          width={200}
+          height={50}
+        />
+        <Image
           className="sidebar-brand-narrow d-none"
-          width="46"
-          height="46"
-        >
-          <title>CoreUI Logo</title>
-          <use xlinkHref="/assets/brand/coreui.svg#signet" />
-        </svg>
+          src="/assets/brand/topLogo.png#full"
+          alt="logo"
+          width={200}
+          height={50}
+        />
       </div>
 
-      <div className="sidebar-nav flex-fill">
-        {children}
-      </div>
+      <div className="sidebar-nav flex-fill">{children}</div>
 
       <Button
         variant="link"
@@ -74,8 +72,12 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
         type="button"
         aria-label="sidebar toggler"
       >
-        <FontAwesomeIcon className="sidebar-toggler-chevron" icon={faAngleLeft} fontSize={24} />
+        <FontAwesomeIcon
+          className="sidebar-toggler-chevron"
+          icon={faAngleLeft}
+          fontSize={24}
+        />
       </Button>
     </div>
-  )
+  );
 }

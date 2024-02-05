@@ -1,14 +1,14 @@
-$sidebar-background: #3c4b64;
+$sidebar-background: rgba(46, 44, 123, 0.95);
 $sidebar-text-color: rgba(255, 255, 255, 0.6);
 $sidebar-brand-height: 4rem;
-$sidebar-brand-background: rgba(0, 0, 21, 0.2);
-$sidebar-nav-group-background: rgba(0, 0, 0, 0.2);
+$sidebar-brand-background: #ffffff;
+$sidebar-nav-group-background: rgba(46, 44, 123, 0.8);
 $sidebar-link-color: rgba(255, 255, 255, 0.6);
 $sidebar-link-color-hover: rgba(255, 255, 255, 0.87);
 $sidebar-link-background-hover: rgba(255, 255, 255, 0.05);
 $sidebar-toggler-height: 3rem;
-$sidebar-toggler-background: rgba(0, 0, 21, 0.2);
-$sidebar-toggler-background-hover: rgba(0, 0, 0, 0.3);
+$sidebar-toggler-background: rgba(46, 44, 123, 0.2);
+$sidebar-toggler-background-hover: rgba(46, 44, 123, 0.5);
 $sidebar-toggler-color: rgba(255, 255, 255, 0.6);
 $sidebar-toggler-color-hover: #ffffff;
 $sidebar-z-index: $zindex-fixed; // Default 1030
@@ -23,7 +23,13 @@ $sidebar-overlay-z-index: 1025;
   width: var(--sidebar-width);
   background: $sidebar-background;
   color: $sidebar-text-color;
-  transition: margin-left 0.15s, margin-right 0.15s, box-shadow 0.075s, transform 0.15s, width 0.15s, z-index 0s ease 0.15s;
+  transition:
+    margin-left 0.15s,
+    margin-right 0.15s,
+    box-shadow 0.075s,
+    transform 0.15s,
+    width 0.15s,
+    z-index 0s ease 0.15s;
   z-index: $sidebar-z-index;
 
   & + .wrapper {
@@ -34,6 +40,8 @@ $sidebar-overlay-z-index: 1025;
   .sidebar-brand {
     flex: 0 0 $sidebar-brand-height;
     background: $sidebar-brand-background;
+    padding-left: 15px;
+    overflow: hidden;
   }
 
   .sidebar-nav {
@@ -45,6 +53,7 @@ $sidebar-overlay-z-index: 1025;
     }
 
     .nav-link {
+      height: 40px;
       color: $sidebar-link-color;
 
       &:hover {
@@ -127,7 +136,8 @@ $sidebar-overlay-z-index: 1025;
           }
         }
 
-        .nav-title, .nav-group-items {
+        .nav-title,
+        .nav-group-items {
           display: none;
         }
 

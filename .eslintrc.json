@@ -20,15 +20,16 @@
     }
   },
   "rules": {
+    "no-else-return": 0,
+    "arrow-body-style": 0,
+    "object-curly-newline": 0,
     "import/prefer-default-export": 0,
+    "operator-linebreak": 0,
     // https://stackoverflow.com/questions/69928061/struggling-with-typescript-react-eslint-and-simple-arrow-functions-components
     "react/function-component-definition": [
       2,
       {
-        "namedComponents": [
-          "function-declaration",
-          "arrow-function"
-        ]
+        "namedComponents": ["function-declaration", "arrow-function"]
       }
     ],
     // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/anchor-is-valid.md#case-i-use-nextjs-and-im-getting-this-error-inside-of-links
@@ -46,6 +47,8 @@
     // Use semicolon as member delimiter for interfaces and type
     "@typescript-eslint/member-delimiter-style": 2,
     "@typescript-eslint/semi": 0,
+    "@typescript-eslint/quotes": 0,
+    "@typescript-eslint/comma-dangle": 0,
     "react/jsx-props-no-spreading": [
       2,
       {
@@ -60,14 +63,6 @@
           "Form.Switch"
         ]
       }
-    ],
-    "quotes": [
-      2,
-      "single"
-    ],
-    "semi": [
-      2,
-      "never"
     ]
   }
 }
