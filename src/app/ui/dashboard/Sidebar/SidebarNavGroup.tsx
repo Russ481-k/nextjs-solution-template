@@ -1,18 +1,8 @@
 "use client";
 
 import { IconDefinition } from "@fortawesome/free-regular-svg-icons";
-import React, {
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import {
-  Accordion,
-  AccordionContext,
-  Button,
-  useAccordionButton,
-} from "react-bootstrap";
+import React, { PropsWithChildren, useContext, useEffect, useState } from "react";
+import { Accordion, AccordionContext, Button, useAccordionButton } from "react-bootstrap";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -41,7 +31,7 @@ const SidebarNavGroupToggle = (props: SidebarNavGroupToggleProps) => {
       variant="link"
       type="button"
       className={classNames(
-        "rounded-0 nav-link px-3 py-2 d-flex align-items-center flex-fill w-100 shadow-none",
+        "rounded-0 nav-link p-2 m-1 d-flex align-items-center flex-fill w-100 shadow-none",
         { collapsed: !isCurrentEventKey }
       )}
       onClick={decoratedOnClick}
@@ -66,16 +56,8 @@ export default function SidebarNavGroup(props: SidebarNavGroupProps) {
   const [isShow, setIsShow] = useState(false);
 
   return (
-    <Accordion
-      as="li"
-      bsPrefix="nav-group"
-      className={classNames({ show: isShow })}
-    >
-      <SidebarNavGroupToggle
-        icon={toggleIcon}
-        eventKey="0"
-        setIsShow={setIsShow}
-      >
+    <Accordion as="li" bsPrefix="nav-group" className={classNames({ show: isShow })}>
+      <SidebarNavGroupToggle icon={toggleIcon} eventKey="0" setIsShow={setIsShow}>
         {toggleText}
       </SidebarNavGroupToggle>
       <Accordion.Collapse eventKey="0">

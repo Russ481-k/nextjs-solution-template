@@ -51,15 +51,16 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
           src="/assets/brand/topLogo.png#full"
           alt="logo"
           priority
-          width={200}
-          height={50}
+          width={180}
+          height={40}
         />
         <Image
           className="sidebar-brand-narrow d-none"
           src="/assets/brand/topLogo.png#full"
           alt="logo"
-          width={200}
-          height={50}
+          priority
+          width={180}
+          height={40}
         />
       </div>
 
@@ -72,11 +73,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
         type="button"
         aria-label="sidebar toggler"
       >
-        <FontAwesomeIcon
-          className="sidebar-toggler-chevron"
-          icon={faAngleLeft}
-          fontSize={24}
-        />
+        <FontAwesomeIcon className="sidebar-toggler-chevron" icon={faAngleLeft} fontSize={24} />
       </Button>
     </div>
   );

@@ -15,7 +15,7 @@ $sidebar-z-index: $zindex-fixed; // Default 1030
 $sidebar-overlay-z-index: 1025;
 
 :root {
-  --sidebar-width: 16rem;
+  --sidebar-width: 12rem;
 }
 
 .sidebar {
@@ -23,6 +23,7 @@ $sidebar-overlay-z-index: 1025;
   width: var(--sidebar-width);
   background: $sidebar-background;
   color: $sidebar-text-color;
+  font-weight: 300;
   transition:
     margin-left 0.15s,
     margin-right 0.15s,
@@ -49,7 +50,7 @@ $sidebar-overlay-z-index: 1025;
     overflow-y: auto;
 
     .nav-title {
-      font-size: 80%;
+      font-weight: 400;
     }
 
     .nav-link {
@@ -124,7 +125,7 @@ $sidebar-overlay-z-index: 1025;
       }
 
       &:not(:hover) {
-        --sidebar-width: 4rem;
+        --sidebar-width: 3.5rem;
 
         .sidebar-brand {
           .sidebar-brand-full {

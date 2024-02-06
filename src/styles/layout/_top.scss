@@ -1,0 +1,19 @@
+$breadcrumb-background: #fff;
+$breadcrumb-text-color: rgba(44, 56, 74, 0.618);
+$breadcrumb-border-color: rgb(210, 210, 210);
+
+.breadcrumb {
+  min-height: 2rem;
+  background-color: $breadcrumb-background;
+  border: solid 1px $breadcrumb-border-color;
+  border-radius: 8px;
+  display: "flex";
+  margin: 0.5rem 0rem 0.5rem 0rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  align-items: "center";
+
+  .breadcrumb-item {
+    color: $breadcrumb-text-color;
+    text-decoration: none;
+  }
+}

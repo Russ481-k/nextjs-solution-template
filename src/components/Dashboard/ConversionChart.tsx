@@ -1,19 +1,10 @@
-'use client'
+"use client";
 
-import { Line } from 'react-chartjs-2'
-import React from 'react'
-import {
-  BarElement,
-  CategoryScale,
-  Chart,
-  Filler,
-  LinearScale,
-  LineElement,
-  PointElement,
-  Tooltip,
-} from 'chart.js'
+import { Line } from "react-chartjs-2";
+import React from "react";
+import { BarElement, CategoryScale, Chart, Filler, LinearScale, LineElement, PointElement, Tooltip } from "chart.js";
 
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Filler)
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Filler);
 
 export default function ConversionChart() {
   return (
@@ -46,15 +37,17 @@ export default function ConversionChart() {
         },
       }}
       data={{
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-          label: 'My First dataset',
-          backgroundColor: 'rgba(255,255,255,.2)',
-          borderColor: 'rgba(255,255,255,.55)',
-          data: [78, 81, 80, 45, 34, 12, 40],
-          fill: true,
-        }],
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [
+          {
+            label: "My First dataset",
+            backgroundColor: "rgba(255,255,255,.2)",
+            borderColor: "rgba(255,255,255,.55)",
+            data: [78, 81, 80, 45, 34, 12, 40],
+            fill: true,
+          },
+        ],
       }}
     />
-  )
+  );
 }

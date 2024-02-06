@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { FormSelect } from 'react-bootstrap'
-import React from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { FormSelect } from "react-bootstrap";
+import React from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   perPage: number;
   setPerPage?: (perPage: number) => void;
-}
+};
 
 export default function RowPerPageSelect(props: Props) {
-  const { perPage, setPerPage } = props
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const { perPage, setPerPage } = props;
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   return (
     <FormSelect
@@ -22,14 +22,14 @@ export default function RowPerPageSelect(props: Props) {
       aria-label="Item per page"
       onChange={(event) => {
         if (setPerPage) {
-          setPerPage(parseInt(event.target.value, 10))
+          setPerPage(parseInt(event.target.value, 10));
         }
 
-        const newSearchParams = new URLSearchParams(searchParams)
-        newSearchParams.set('page', '1') // Go back to first page
-        newSearchParams.set('per_page', event.target.value)
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set("page", "1"); // Go back to first page
+        newSearchParams.set("per_page", event.target.value);
 
-        router.push(`${pathname}?${newSearchParams}`)
+        router.push(`${pathname}?${newSearchParams}`);
       }}
     >
       <option value={20}>20</option>
@@ -37,5 +37,5 @@ export default function RowPerPageSelect(props: Props) {
       <option value={100}>100</option>
       <option value={250}>250</option>
     </FormSelect>
-  )
+  );
 }

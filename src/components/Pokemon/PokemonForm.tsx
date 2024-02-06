@@ -1,21 +1,19 @@
-'use client'
+"use client";
 
-import {
-  Alert, Button, Col, Form, Row,
-} from 'react-bootstrap'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import React, { useState } from 'react'
-import classNames from 'classnames'
-import Image from 'next/image'
+import { Alert, Button, Col, Form, Row } from "react-bootstrap";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import React, { useState } from "react";
+import classNames from "classnames";
+import Image from "next/image";
 import {
   Pokemon,
   PokemonEggGroup,
   pokemonEggGroups,
   PokemonType,
   pokemonTypes,
-} from '@/models/pokemon'
-import FormError from '@/components/Form/FormError'
-import PokemonTypeLabel from '@/components/Pokemon/PokemonTypeLabel'
+} from "@/models/pokemon";
+import FormError from "@/components/Form/FormError";
+import PokemonTypeLabel from "@/components/Pokemon/PokemonTypeLabel";
 
 type Inputs = {
   name: string;
@@ -27,14 +25,14 @@ type Inputs = {
   special_attack: number | null;
   special_defense: number | null;
   speed: number | null;
-}
+};
 
 type Props = {
   pokemon?: Pokemon;
-}
+};
 
 export default function PokemonForm(props: Props) {
-  const { pokemon } = props
+  const { pokemon } = props;
 
   const defaultValues = (): Inputs => {
     if (pokemon) {
@@ -48,11 +46,11 @@ export default function PokemonForm(props: Props) {
         special_attack: pokemon.special_attack,
         special_defense: pokemon.special_defense,
         speed: pokemon.speed,
-      }
+      };
     }
 
     return {
-      name: '',
+      name: "",
       types: [],
       eggGroups: [],
       hp: null,
@@ -61,8 +59,8 @@ export default function PokemonForm(props: Props) {
       special_attack: null,
       special_defense: null,
       speed: null,
-    }
-  }
+    };
+  };
 
   const {
     register,
@@ -73,40 +71,43 @@ export default function PokemonForm(props: Props) {
     reset,
   } = useForm<Inputs>({
     defaultValues: defaultValues(),
-  })
+  });
 
-  const [submitting, setSubmitting] = useState(false)
-  const [notificationMessage, setNotificationMessage] = useState('')
+  const [submitting, setSubmitting] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setSubmitting(true)
+    setSubmitting(true);
 
     // Change to your real submit here
-    const fakeSubmit = () => new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(data)
-      }, 1500)
-    })
+    const fakeSubmit = () =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(data);
+        }, 1500);
+      });
 
-    const res = await fakeSubmit()
+    const res = await fakeSubmit();
 
-    setSubmitting(false)
-    window.scrollTo(0, 0)
+    setSubmitting(false);
+    window.scrollTo(0, 0);
 
     if (res) {
-      setNotificationMessage('Record saved successfully.')
-      return
+      setNotificationMessage("Record saved successfully.");
+      return;
     }
 
-    setNotificationMessage('Unexpected error occurred, please try again.')
-  }
+    setNotificationMessage("Unexpected error occurred, please try again.");
+  };
 
   return (
-    <Form
-      noValidate
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <Alert variant="success" show={notificationMessage !== ''} onClose={() => setNotificationMessage('')} dismissible>
+    <Form noValidate onSubmit={handleSubmit(onSubmit)}>
+      <Alert
+        variant="success"
+        show={notificationMessage !== ""}
+        onClose={() => setNotificationMessage("")}
+        dismissible
+      >
         {notificationMessage}
       </Alert>
 
@@ -114,13 +115,13 @@ export default function PokemonForm(props: Props) {
         <div
           className="position-relative mx-auto"
           style={{
-            width: '150px',
-            height: '150px',
+            width: "150px",
+            height: "150px",
           }}
         >
           <Image
             fill
-            style={{ objectFit: 'contain' }}
+            style={{ objectFit: "contain" }}
             alt={pokemon.pokemondb_identifier}
             sizes="5vw"
             src={`https://img.pokemondb.net/sprites/home/normal/2x/${pokemon.pokemondb_identifier}.jpg`}
@@ -132,7 +133,7 @@ export default function PokemonForm(props: Props) {
         <Form.Label>Name</Form.Label>
         <Form.Control
           type="text"
-          {...register('name', { required: 'This field is required' })}
+          {...register("name", { required: "This field is required" })}
           isInvalid={!!errors.name}
         />
         <FormError message={errors.name?.message} />
@@ -140,7 +141,7 @@ export default function PokemonForm(props: Props) {
 
       <Form.Group className="mb-3">
         <Form.Label>Types</Form.Label>
-        <div className={classNames({ 'is-invalid': !!errors.types })}>
+        <div className={classNames({ "is-invalid": !!errors.types })}>
           <Row>
             {pokemonTypes.map((type) => (
               <Col xs={6} sm={4} md={3} lg={2} key={type}>
@@ -148,11 +149,11 @@ export default function PokemonForm(props: Props) {
                   <Form.Check.Input
                     type="checkbox"
                     // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('types', { required: 'This field is required' })}
+                    {...register("types", { required: "This field is required" })}
                     value={type}
                   />
                   <Form.Check.Label>
-                    <span className="position-relative" style={{ top: '-.1rem' }}>
+                    <span className="position-relative" style={{ top: "-.1rem" }}>
                       <PokemonTypeLabel type={type} />
                     </span>
                   </Form.Check.Label>
@@ -166,14 +167,14 @@ export default function PokemonForm(props: Props) {
 
       <Form.Group className="mb-3">
         <Form.Label>Egg groups</Form.Label>
-        <div className={classNames({ 'is-invalid': !!errors.eggGroups })}>
+        <div className={classNames({ "is-invalid": !!errors.eggGroups })}>
           <Row>
             {pokemonEggGroups.map((eggGroup) => (
               <Col xs={6} sm={4} md={3} lg={2} key={eggGroup}>
                 <Form.Check
                   id={`eg-${eggGroup}`}
                   type="checkbox"
-                  {...register('eggGroups', { required: 'This field is required' })}
+                  {...register("eggGroups", { required: "This field is required" })}
                   value={eggGroup}
                   label={eggGroup}
                 />
@@ -189,15 +190,15 @@ export default function PokemonForm(props: Props) {
         <Form.Control
           className="w-auto"
           type="number"
-          {...register('hp', {
-            required: 'This field is required',
+          {...register("hp", {
+            required: "This field is required",
             min: {
               value: 0,
-              message: 'This input must be at least 0',
+              message: "This input must be at least 0",
             },
             max: {
               value: 255,
-              message: 'This input must be at most 255',
+              message: "This input must be at most 255",
             },
             valueAsNumber: true,
           })}
@@ -211,15 +212,15 @@ export default function PokemonForm(props: Props) {
         <Form.Control
           className="w-auto"
           type="number"
-          {...register('attack', {
-            required: 'This field is required',
+          {...register("attack", {
+            required: "This field is required",
             min: {
               value: 0,
-              message: 'This input must be at least 0',
+              message: "This input must be at least 0",
             },
             max: {
               value: 255,
-              message: 'This input must be at most 255',
+              message: "This input must be at most 255",
             },
             valueAsNumber: true,
           })}
@@ -233,15 +234,15 @@ export default function PokemonForm(props: Props) {
         <Form.Control
           className="w-auto"
           type="number"
-          {...register('defense', {
-            required: 'This field is required',
+          {...register("defense", {
+            required: "This field is required",
             min: {
               value: 0,
-              message: 'This input must be at least 0',
+              message: "This input must be at least 0",
             },
             max: {
               value: 255,
-              message: 'This input must be at most 255',
+              message: "This input must be at most 255",
             },
             valueAsNumber: true,
           })}
@@ -255,15 +256,15 @@ export default function PokemonForm(props: Props) {
         <Form.Control
           className="w-auto"
           type="number"
-          {...register('special_attack', {
-            required: 'This field is required',
+          {...register("special_attack", {
+            required: "This field is required",
             min: {
               value: 0,
-              message: 'This input must be at least 0',
+              message: "This input must be at least 0",
             },
             max: {
               value: 255,
-              message: 'This input must be at most 255',
+              message: "This input must be at most 255",
             },
             valueAsNumber: true,
           })}
@@ -277,15 +278,15 @@ export default function PokemonForm(props: Props) {
         <Form.Control
           className="w-auto"
           type="number"
-          {...register('special_defense', {
-            required: 'This field is required',
+          {...register("special_defense", {
+            required: "This field is required",
             min: {
               value: 0,
-              message: 'This input must be at least 0',
+              message: "This input must be at least 0",
             },
             max: {
               value: 255,
-              message: 'This input must be at most 255',
+              message: "This input must be at most 255",
             },
             valueAsNumber: true,
           })}
@@ -300,14 +301,14 @@ export default function PokemonForm(props: Props) {
           control={control}
           name="speed"
           rules={{
-            required: 'This field is required',
+            required: "This field is required",
             min: {
               value: 0,
-              message: 'This input must be at least 0',
+              message: "This input must be at least 0",
             },
             max: {
               value: 255,
-              message: 'This input must be at most 255',
+              message: "This input must be at most 255",
             },
           }}
           render={({ field }) => (
@@ -316,13 +317,13 @@ export default function PokemonForm(props: Props) {
               type="number"
               {...field}
               isInvalid={!!errors.speed}
-              value={field.value ?? ''}
+              value={field.value ?? ""}
               onChange={(e) => {
-                if (e.target.value === '') {
-                  setValue('speed', null)
-                  return
+                if (e.target.value === "") {
+                  setValue("speed", null);
+                  return;
                 }
-                setValue('speed', Number(e.target.value))
+                setValue("speed", Number(e.target.value));
               }}
             />
           )}
@@ -330,8 +331,12 @@ export default function PokemonForm(props: Props) {
         <FormError message={errors.speed?.message} />
       </Form.Group>
 
-      <Button className="me-3" type="submit" variant="success" disabled={submitting}>Submit</Button>
-      <Button type="button" variant="secondary" onClick={() => reset()}>Reset</Button>
+      <Button className="me-3" type="submit" variant="success" disabled={submitting}>
+        Submit
+      </Button>
+      <Button type="button" variant="secondary" onClick={() => reset()}>
+        Reset
+      </Button>
     </Form>
-  )
+  );
 }

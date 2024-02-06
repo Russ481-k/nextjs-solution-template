@@ -1,6 +1,6 @@
 $header-background: #fff;
 $header-link-color: rgba(44, 56, 74, 0.681);
-$header-link-color-hover: rgba(44, 56, 74, 0.95);
+$header-link-color-hover: rgba(57, 55, 130, 0.95);
 $header-brand-color: #4f5d73;
 
 .header {
@@ -9,7 +9,24 @@ $header-brand-color: #4f5d73;
   .header-brand {
     color: $header-brand-color;
   }
-
+  .header-button {
+    border: none;
+    border-radius: 0;
+    color: $header-link-color;
+    font-size: 18px;
+    font-weight: 500;
+    background: $header-background;
+    color: $header-link-color;
+    &:hover {
+      color: $header-link-color-hover;
+      border-bottom: solid 3px $header-link-color-hover;
+    }
+    &:active {
+      background-color: white;
+      color: $header-link-color-hover;
+      border-bottom: solid 3px $header-link-color-hover;
+    }
+  }
   .header-navbar {
     min-height: 3rem;
 
@@ -18,21 +35,16 @@ $header-brand-color: #4f5d73;
     }
 
     .header-nav {
-      .nav-link {
+      .nav-link-work-manage-button {
+        padding: 0;
         color: $header-link-color;
-
+        font-size: 18px;
+        font-weight: 500;
         &:hover {
           color: $header-link-color-hover;
         }
       }
-    }
-  }
-
-  .breadcrumb {
-    min-height: 2rem;
-
-    .breadcrumb-item {
-      a {
+      .nav-link {
         color: $header-link-color;
 
         &:hover {

@@ -1,24 +1,35 @@
-import Link from 'next/link'
-import { Container } from 'react-bootstrap'
-import HeaderSidebarToggler from '@/app/ui/dashboard/Header/HeaderSidebarToggler'
-import HeaderFeaturedNav from '@/app/ui/dashboard/Header/HeaderFeaturedNav'
-import HeaderNotificationNav from '@/app/ui/dashboard/Header/HeaderNotificationNav'
-import HeaderProfileNav from '@/app/ui/dashboard/Header/HeaderProfileNav'
-import Breadcrumb from '@/app/ui/dashboard/Breadcrumb/Breadcrumb'
+"use client";
 
-export default function Header() {
+import Link from "next/link";
+import { Container } from "react-bootstrap";
+import HeaderSidebarToggler from "@/app/ui/dashboard/Header/HeaderSidebarToggler";
+import HeaderFeaturedNav from "@/app/ui/dashboard/Header/HeaderFeaturedNav";
+import HeaderNotificationNav from "@/app/ui/dashboard/Header/HeaderNotificationNav";
+import HeaderProfileNav from "@/app/ui/dashboard/Header/HeaderProfileNav";
+import Image from "next/image";
+
+interface HeaderProps {
+  primaryMenu: string;
+  primaryMenuSetter: (menu: string) => void;
+}
+
+export default function Header({ primaryMenu, primaryMenuSetter }: HeaderProps) {
   return (
-    <header className="header sticky-top mb-4 py-2 px-sm-2 border-bottom">
+    <header className="header sticky-top py-2 px-sm-2 border-bottom">
       <Container fluid className="header-navbar d-flex align-items-center">
         <HeaderSidebarToggler />
-        <Link href="/" className="header-brand d-md-none">
-          <svg width="80" height="46">
-            <title>CoreUI Logo</title>
-            <use xlinkHref="/assets/brand/coreui.svg#full" />
-          </svg>
+        <Link href="/" className="header-brand d-md-none" as="image">
+          <Image
+            className="sidebar-brand-full"
+            src="/assets/brand/topLogo.png#full"
+            alt="logo"
+            priority
+            width={100}
+            height={25}
+          />
         </Link>
         <div className="header-nav d-none d-md-flex">
-          <HeaderFeaturedNav />
+          <HeaderFeaturedNav primaryMenu={primaryMenu} primaryMenuSetter={primaryMenuSetter} />
         </div>
         <div className="header-nav ms-auto">
           <HeaderNotificationNav />
@@ -27,10 +38,6 @@ export default function Header() {
           <HeaderProfileNav />
         </div>
       </Container>
-      <div className="header-divider border-top my-2 mx-sm-n2" />
-      <Container fluid>
-        <Breadcrumb />
-      </Container>
     </header>
-  )
+  );
 }
