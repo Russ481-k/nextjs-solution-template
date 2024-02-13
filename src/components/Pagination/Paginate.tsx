@@ -3,6 +3,8 @@
 import ReactPaginate from "react-paginate";
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type Props = {
   currentPage: number;
@@ -22,12 +24,12 @@ export default function Paginate(props: Props) {
   }, [currentPage]);
 
   return (
-    <div className="col-auto ms-sm-auto mb-3 overflow-auto">
+    <div className="col-auto ms-sm-auto mb-3 overflow-auto color-#3c3796">
       <ReactPaginate
         forcePage={pageIndex}
         pageCount={lastPage}
-        marginPagesDisplayed={1}
-        pageRangeDisplayed={3}
+        marginPagesDisplayed={3}
+        pageRangeDisplayed={5}
         containerClassName="pagination mb-0"
         previousClassName="page-item"
         pageClassName="page-item"
@@ -37,8 +39,8 @@ export default function Paginate(props: Props) {
         pageLinkClassName="page-link"
         breakLinkClassName="page-link"
         nextLinkClassName="page-link"
-        previousLabel="‹"
-        nextLabel="›"
+        previousLabel={<FontAwesomeIcon size="xs" icon={faChevronLeft} />}
+        nextLabel={<FontAwesomeIcon size="xs" icon={faChevronRight} />}
         activeClassName="active"
         disabledClassName="disabled"
         onPageChange={(selectedItem) => {

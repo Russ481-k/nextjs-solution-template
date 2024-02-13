@@ -6,7 +6,98 @@ import {
   faSheetPlastic,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const menuList = [
+export const electricApprovalMenuList = [
+  {
+    id: 1,
+    icon: faLayerGroup,
+    text: "전자결재 홈",
+    child: [],
+    url: "/electric-approval/home",
+  },
+  {
+    id: 2,
+    icon: faLayerGroup,
+    text: "새 결재 진행",
+    child: [],
+    url: "/electric-approval/new",
+  },
+  {
+    id: 3,
+    icon: faLayerGroup,
+    text: "진행 중 문서",
+    child: [
+      {
+        id: 1,
+        icon: null,
+        text: "결재 대기 문서",
+        url: "/electric-approval/waiting-for-approve",
+      },
+      {
+        id: 2,
+        icon: null,
+        text: "결재 예정 문서",
+        url: "/electric-approval/scheduled-approvals",
+      },
+      {
+        id: 3,
+        icon: null,
+        text: "결재 수신 문서",
+        url: "/electric-approval/received-approvals",
+      },
+      {
+        id: 4,
+        icon: null,
+        text: "참조 대기 문서",
+        url: "/electric-approval/waiting-for-reference",
+      },
+    ],
+    url: "",
+  },
+  {
+    id: 4,
+    icon: faLayerGroup,
+    text: "문서함",
+    child: [
+      {
+        id: 1,
+        icon: null,
+        text: "기안 문서",
+        url: "/electric-approval/draft-documents",
+      },
+      {
+        id: 2,
+        icon: null,
+        text: "회수 문서",
+        url: "/electric-approval/recovery-documents",
+      },
+      {
+        id: 3,
+        icon: null,
+        text: "임시 저장 문서",
+        url: "/electric-approval/temporary-documents",
+      },
+      {
+        id: 4,
+        icon: null,
+        text: "결재 완료 문서",
+        url: "/electric-approval/approved-documents",
+      },
+      {
+        id: 5,
+        icon: null,
+        text: "수신 문서",
+        url: "/electric-approval/received-documents",
+      },
+      {
+        id: 6,
+        icon: null,
+        text: "참조/열람 문서",
+        url: "/electric-approval/reference-documents",
+      },
+    ],
+  },
+];
+export const accountingMenuList = [
   {
     id: 1,
     icon: faSheetPlastic,

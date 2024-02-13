@@ -1,6 +1,5 @@
 "use client";
 
-import { Container } from "react-bootstrap";
 import React from "react";
 import SidebarProvider from "@/app/ui/dashboard/sidebar-provider";
 import SidebarOverlay from "@/app/ui/dashboard/Sidebar/SidebarOverlay";
@@ -15,7 +14,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const handleSetPrimaryMenu = (menu: string) => {
     setPrimaryMenu(menu);
   };
-  console.log("primaryMenu", primaryMenu);
   return (
     <SidebarProvider>
       <SidebarOverlay />
@@ -23,14 +21,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <SidebarNav primaryMenu={primaryMenu} />
       </Sidebar>
       <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-        <Header primaryMenu={primaryMenu} primaryMenuSetter={handleSetPrimaryMenu} />
-        <div className="body flex-grow-1 mb-4">
-          <Container fluid>{children}</Container>
-        </div>
-
+        <Header primaryMenuSetter={handleSetPrimaryMenu} />
+        <div className="body flex-grow-1 my-1">{children}</div>
         <Footer />
       </div>
-
       <SidebarOverlay />
     </SidebarProvider>
   );

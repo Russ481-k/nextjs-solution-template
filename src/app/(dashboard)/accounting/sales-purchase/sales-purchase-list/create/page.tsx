@@ -1,13 +1,13 @@
-import { Card, CardBody, CardHeader } from 'react-bootstrap'
-import PokemonForm from '@/components/Pokemon/PokemonForm'
+import SearchForm from "@/components/SearchList/SearchForm";
+import { Card, CardBody, CardHeader } from "react-bootstrap";
 
 export default function Page() {
   return (
     <Card>
       <CardHeader>Add new Pokémon</CardHeader>
       <CardBody>
-        <PokemonForm />
+        <SearchForm />
       </CardBody>
     </Card>
-  )
+  );
 }

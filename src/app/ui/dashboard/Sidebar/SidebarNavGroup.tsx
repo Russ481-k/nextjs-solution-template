@@ -31,14 +31,14 @@ const SidebarNavGroupToggle = (props: SidebarNavGroupToggleProps) => {
       variant="link"
       type="button"
       className={classNames(
-        "rounded-0 nav-link p-2 m-1 d-flex align-items-center flex-fill w-100 shadow-none",
+        "rounded-0 nav-link p-2 d-flex align-items-center flex-fill w-100 shadow-none",
         { collapsed: !isCurrentEventKey }
       )}
       onClick={decoratedOnClick}
     >
-      <FontAwesomeIcon className="nav-icon ms-n3" icon={icon} />
+      <FontAwesomeIcon className="nav-icon ps-1 ms-n3" icon={icon} />
       {children}
-      <div className="nav-chevron ms-auto text-end">
+      <div className="nav-chevron ps-2 ms-auto">
         <FontAwesomeIcon size="xs" icon={faChevronUp} />
       </div>
     </Button>

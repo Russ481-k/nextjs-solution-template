@@ -1,18 +1,13 @@
 import React from "react";
 
-type Props = {
+interface SummaryProps {
   total: number;
-  from: number;
-  to: number;
-};
+}
 
-export default function Summary(props: Props) {
-  const { total, from, to } = props;
-
+export default function Summary({ total }: SummaryProps) {
   return (
-    <div className="col-12 text-center text-sm-start col-sm-auto col-lg mb-3">
-      Showing <span className="fw-semibold">{from}</span> to <span className="fw-semibold">{to}</span> of{" "}
-      <span className="fw-semibold">{total}</span> results
+    <div className="col-1 text-center text-sm-start col-sm-auto mb-3">
+      조회 결과 : <span className="fw-semibold">{total}</span>개
     </div>
   );
 }

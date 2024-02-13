@@ -1,7 +1,5 @@
 "use client";
 
-import { menuIds } from "@/app/menuList";
-
 export default function Breadcrumb({
   primaryMenu,
   secondaryMenu,
@@ -9,23 +7,26 @@ export default function Breadcrumb({
 }: {
   primaryMenu: string;
   secondaryMenu: string;
-  thirdMenu: string;
+  thirdMenu?: string;
 }) {
-  console.log("secondaryMenu", secondaryMenu, "thirdMenu", thirdMenu);
   return (
     <div className="breadcrumb">
-      <div className="breadcrumb-item">
-        {menuIds.find((e) => e.id === primaryMenu)?.text ?? "Dashboard"}
-      </div>
-
+      <div className="breadcrumb-item">{primaryMenu}</div>
       {secondaryMenu && (
-        <div className="breadcrumb-item">
-          {`${menuIds.find((e) => e.id === secondaryMenu)?.text}`}
+        <div
+          className="breadcrumb-item"
+          style={thirdMenu ? { color: "" } : { color: "#393782", fontWeight: 600 }}
+        >
+          {secondaryMenu}
         </div>
       )}
-
       {thirdMenu && (
-        <div className="breadcrumb-item">{`${menuIds.find((e) => e.id === thirdMenu)?.text}`}</div>
+        <div
+          className="breadcrumb-item"
+          style={thirdMenu ? { color: "#393782", fontWeight: 600 } : { color: "" }}
+        >
+          {thirdMenu}
+        </div>
       )}
     </div>
   );

@@ -10,7 +10,7 @@ export default function RowsPerPage(props: Props) {
 
   return (
     <div className="col-auto ms-sm-auto mb-3">
-      Rows per page: <RowPerPageSelect perPage={perPage} setPerPage={setPerPage} />
+      조회 단위 <RowPerPageSelect perPage={perPage} setPerPage={setPerPage} />
     </div>
   );
 }

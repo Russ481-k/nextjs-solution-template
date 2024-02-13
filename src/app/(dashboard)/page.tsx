@@ -230,7 +230,7 @@ export default function Page() {
                   Year
                 </label>
               </ButtonGroup>
-              <Button variant="primary">
+              <Button className="button-primary">
                 <FontAwesomeIcon icon={faDownload} fixedWidth />
               </Button>
             </div>

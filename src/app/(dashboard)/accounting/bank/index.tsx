@@ -1,15 +1,13 @@
 "use client";
 
-import { Button, Card } from "react-bootstrap";
+import { Accordion, Button, Container, Form, InputGroup } from "react-bootstrap";
 import React from "react";
 import { newResource, Resource } from "@/models/resource";
 import { Pokemon } from "@/models/pokemon";
 import useSWRAxios, { transformResponseWrapper } from "@/hooks/useSWRAxios";
 import Pagination from "@/components/Pagination/Pagination";
-import PokemonList from "@/components/Pokemon/PokemonList";
-import { useRouter } from "next/navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Breadcrumb from "@/components/Breadcrumb";
+import BankDepositList from "./List/BankDepositList";
 
 export type Props = {
   props: {
@@ -25,8 +23,6 @@ export default function Index(props: Props) {
   const {
     props: { pokemonResource, page, perPage, sort, order },
   } = props;
-
-  const router = useRouter();
 
   const pokemonListURL = `${process.env.NEXT_PUBLIC_POKEMON_LIST_API_BASE_URL}pokemons` || "";
 
@@ -56,19 +52,66 @@ export default function Index(props: Props) {
   );
 
   return (
-    <Card>
-      <Card.Header>Pokémon</Card.Header>
-      <Card.Body>
-        <div className="mb-3 text-end">
-          <Button variant="success" onClick={() => router.push("/pokemons/create")}>
-            <FontAwesomeIcon icon={faPlus} fixedWidth />
-            Add new
-          </Button>
-        </div>
-        <Pagination meta={resource.meta} />
-        <PokemonList pokemons={resource.data} />
-        <Pagination meta={resource.meta} />
-      </Card.Body>
-    </Card>
+    <div>
+      <Container fluid>
+        <Breadcrumb primaryMenu="회계관리" secondaryMenu="은행예금" />
+      </Container>
+      <Container fluid>
+        <Accordion defaultActiveKey={["0"]} alwaysOpen>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>은행 예금 목록 조회</Accordion.Header>
+            <Accordion.Body>
+              <InputGroup>
+                <InputGroup.Text className="last-row" id="inputGroup-sizing-default">
+                  은행
+                </InputGroup.Text>
+                <Form.Control
+                  className="last-row"
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                />
+                <InputGroup.Text className="last-row" id="inputGroup-sizing-default">
+                  계좌번호
+                </InputGroup.Text>
+                <Form.Control
+                  className="last-row"
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                />
+                <InputGroup.Text className="last-row" id="inputGroup-sizing-default">
+                  최종 확인일
+                </InputGroup.Text>
+                <Form.Control
+                  className="last-row"
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                />
+                <InputGroup.Text className="last-row" id="inputGroup-sizing-default">
+                  예금 종류
+                </InputGroup.Text>
+                <Form.Control
+                  className="last-column last-row"
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                />
+                <Button className="button-primary ">조회</Button>
+              </InputGroup>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+        <Accordion defaultActiveKey={["0"]} alwaysOpen>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>조회 목록</Accordion.Header>
+            <Accordion.Body>
+              <div className="p-3">
+                <Pagination meta={resource.meta} />
+                <BankDepositList data={resource.data} />
+                <Pagination meta={resource.meta} />
+              </div>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      </Container>
+    </div>
   );
 }

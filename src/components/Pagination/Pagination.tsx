@@ -12,16 +12,16 @@ type Props = {
 
 export default function Pagination(props: Props) {
   const {
-    meta: { from, to, total, per_page: perPage, last_page: lastPage, current_page: currentPage },
+    meta: { total, per_page: perPage, last_page: lastPage, current_page: currentPage },
     setPerPage,
     setPage,
   } = props;
 
   return (
     <div className="row align-items-center justify-content-center">
-      <Summary from={from} to={to} total={total} />
-      <RowsPerPage perPage={perPage} setPerPage={setPerPage} />
+      <Summary total={total} />
       <Paginate currentPage={currentPage} lastPage={lastPage} setPage={setPage} />
+      <RowsPerPage perPage={perPage} setPerPage={setPerPage} />
     </div>
   );
 }

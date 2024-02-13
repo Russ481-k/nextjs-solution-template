@@ -68,7 +68,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
 
       <Button
         variant="link"
-        className="sidebar-toggler d-none d-md-inline-block rounded-0 text-end pe-4 fw-bold shadow-none"
+        className="sidebar-toggler px-3 d-none d-md-inline-block rounded-0 text-end pe-4 fw-bold shadow-none"
         onClick={toggleIsNarrow}
         type="button"
         aria-label="sidebar toggler"

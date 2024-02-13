@@ -9,11 +9,10 @@ import HeaderProfileNav from "@/app/ui/dashboard/Header/HeaderProfileNav";
 import Image from "next/image";
 
 interface HeaderProps {
-  primaryMenu: string;
   primaryMenuSetter: (menu: string) => void;
 }
 
-export default function Header({ primaryMenu, primaryMenuSetter }: HeaderProps) {
+export default function Header({ primaryMenuSetter }: HeaderProps) {
   return (
     <header className="header sticky-top py-2 px-sm-2 border-bottom">
       <Container fluid className="header-navbar d-flex align-items-center">
@@ -29,7 +28,7 @@ export default function Header({ primaryMenu, primaryMenuSetter }: HeaderProps) 
           />
         </Link>
         <div className="header-nav d-none d-md-flex">
-          <HeaderFeaturedNav primaryMenu={primaryMenu} primaryMenuSetter={primaryMenuSetter} />
+          <HeaderFeaturedNav primaryMenuSetter={primaryMenuSetter} />
         </div>
         <div className="header-nav ms-auto">
           <HeaderNotificationNav />
